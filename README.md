@@ -9,6 +9,15 @@ Herramienta CLI para interactuar con la API REST de Factorial HR para control ho
 > [!WARNING]
 > Proyecto con fines lúdicos. El autor no se hace responsable del uso indebido que cada usuario haga.
 
+
+## ☕ Acho tio... pagate un café!
+
+Si te gusta... pagate algo, ¿no?:
+[![Donar PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.com/donate/?hosted_button_id=S2CX67ZD5C97C)
+
+
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="jpromocion" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+
 ## 📋 Caracteristicas
 
 - **Calendario**: Consulta el calendario laboral con dias laborables, festivos y horas imputadas
