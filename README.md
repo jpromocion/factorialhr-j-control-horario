@@ -15,6 +15,8 @@ Herramienta CLI para interactuar con la API REST de Factorial HR para control ho
 Si te gusta... pagate algo, ¿no?:
 [![Donar PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.com/donate/?hosted_button_id=S2CX67ZD5C97C)
 
+Si estas en modo rácano... pulsa al menos la ⭐ en el proyecto Github
+
 ## 📋 Caracteristicas
 
 - **Calendario**: Consulta el calendario laboral con dias laborables, festivos y horas imputadas
