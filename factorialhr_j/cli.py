@@ -1,5 +1,7 @@
 import click
 import json
+import random
+import time
 from typing import Dict, List, Optional, Tuple
 
 from .factorialhr import FactorialService
@@ -65,8 +67,11 @@ def calendario(fechainicio: str, fechafin: str):
 @click.option("--fin", help="Hora fin (HH:MM), puede usar commas para multiples")
 @click.option("--rango", help="Rango de fechas (DD/MM/YYYY-DD/MM/YYYY)")
 @click.option("--matriz-modelo", help="Matriz modelo JSON por tipo de dia de la semana")
+@click.option("--humanizar/--no-humanizar", is_flag=True, default=False,
+              help="Añade delay aleatorio (1-2s) entre imputaciones")
 def imputar(fecha: Optional[str], inicio: Optional[str], fin: Optional[str],
-             rango: Optional[str], matriz_modelo: Optional[str]):
+             rango: Optional[str], matriz_modelo: Optional[str],
+             humanizar: bool):
     try:
         employee_id = get_employee_id()
         service = FactorialService()
@@ -108,6 +113,8 @@ def imputar(fecha: Optional[str], inicio: Optional[str], fin: Optional[str],
                     try:
                         shift = service.create_shift(employee_id, cal_day.date, clock_in, clock_out)
                         results[cal_day.date][0].append(shift)
+                        if humanizar:
+                            time.sleep(random.uniform(1, 2))
                     except ApiError as e:
                         results[cal_day.date][1].append(f"Error {e.status_code}: {e.message}" + (f"\n        Detalle: {e.details}" if e.details else ""))
 
@@ -137,6 +144,8 @@ def imputar(fecha: Optional[str], inicio: Optional[str], fin: Optional[str],
                 try:
                     shift = service.create_shift(employee_id, date_api, clock_in, clock_out)
                     results[date_api][0].append(shift)
+                    if humanizar:
+                        time.sleep(random.uniform(1, 2))
                 except ApiError as e:
                     results[date_api][1].append(f"Error {e.status_code}: {e.message}" + (f"\n        Detalle: {e.details}" if e.details else ""))
 

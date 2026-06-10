@@ -186,19 +186,20 @@ Crea una nueva imputacion de tiempo para un dia y horario especifico.
 
 ```bash
 # 1 imputacion
-factorialhr-j imputar --fecha "02/06/2026" --inicio "08:00" --fin "15:00"
+factorialhr-j imputar --humanizar --fecha "02/06/2026" --inicio "08:00" --fin "15:00"
 
 # 2 imputaciones en mismo dia
-factorialhr-j imputar --fecha "02/06/2026" --inicio "08:00,16:00" --fin "15:00,17:30"
+factorialhr-j imputar --humanizar --fecha "02/06/2026" --inicio "08:00,16:00" --fin "15:00,17:30"
 
 # 3 imputaciones con rango dia / modelo. Escapado en matriz-modelo para ": todo parametro con simples '' y dentro escapar con \"
 #   3.1 Ejemplo: Imputar semana en "horario oficina" estandar
-factorialhr-j imputar --rango "01/06/2026-05/06/2026" --matriz-modelo '[{\"dia\": \"L\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"14:00\"},{\"inicio\": \"15:00\",\"fin\": \"17:30\"}]},{\"dia\": \"M\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"14:00\"},{\"inicio\": \"15:00\",\"fin\": \"17:30\"}]},{\"dia\": \"X\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"14:00\"},{\"inicio\": \"15:00\",\"fin\": \"17:30\"}]},{\"dia\": \"J\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"14:00\"},{\"inicio\": \"15:00\",\"fin\": \"17:30\"}]},{\"dia\": \"V\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"14:00\"}]}]'
+factorialhr-j imputar --humanizar --rango "01/06/2026-05/06/2026" --matriz-modelo '[{\"dia\": \"L\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"14:00\"},{\"inicio\": \"15:00\",\"fin\": \"17:30\"}]},{\"dia\": \"M\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"14:00\"},{\"inicio\": \"15:00\",\"fin\": \"17:30\"}]},{\"dia\": \"X\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"14:00\"},{\"inicio\": \"15:00\",\"fin\": \"17:30\"}]},{\"dia\": \"J\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"14:00\"},{\"inicio\": \"15:00\",\"fin\": \"17:30\"}]},{\"dia\": \"V\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"14:00\"}]}]'
 
 #   3.2 Ejemplo: Imputar semana en horario reducido verano (con "descanso" intermedio)
-factorialhr-j imputar --rango "06/07/2026-10/07/2026" --matriz-modelo '[{\"dia\": \"L\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"12:00\"},{\"inicio\": \"12:15\",\"fin\": \"15:15\"}]},{\"dia\": \"M\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"12:00\"},{\"inicio\": \"12:15\",\"fin\": \"15:15\"}]},{\"dia\": \"X\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"12:00\"},{\"inicio\": \"12:15\",\"fin\": \"15:15\"}]},{\"dia\": \"J\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"12:00\"},{\"inicio\": \"12:15\",\"fin\": \"15:15\"}]},{\"dia\": \"V\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"12:00\"},{\"inicio\": \"12:15\",\"fin\": \"15:15\"}]}]'
+factorialhr-j imputar --humanizar --rango "06/07/2026-10/07/2026" --matriz-modelo '[{\"dia\": \"L\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"12:00\"},{\"inicio\": \"12:15\",\"fin\": \"15:15\"}]},{\"dia\": \"M\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"12:00\"},{\"inicio\": \"12:15\",\"fin\": \"15:15\"}]},{\"dia\": \"X\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"12:00\"},{\"inicio\": \"12:15\",\"fin\": \"15:15\"}]},{\"dia\": \"J\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"12:00\"},{\"inicio\": \"12:15\",\"fin\": \"15:15\"}]},{\"dia\": \"V\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"12:00\"},{\"inicio\": \"12:15\",\"fin\": \"15:15\"}]}]'
 ```
 Parametros:
+- **humanizar**: Establece una espera de entre 1-2 segundos entre cada registro interno realizado para grabar una imputación. "humaniza" la grabación.
 - **fecha**: Fecha del día en formato "DD/MM/YYY".
 - **inicio**: Hora de inicio de la imputación en formato "HH24:MI". Admite pasar varias separadas por ",", como `"08:00,16:00"`, lo que realizará varias imputaciones en el mismo dia. Los parámetros `inicio` y `fin` deben contener el mismo número de elementos para hacer la correspondencia.
 - **fin**: Hora de fin de la imputación en formato "HH24:MI". Admite pasar varias separadas por ",", como `"15:00,17:30"`, lo que realizará varias imputaciones en el mismo dia. Los parámetros `inicio` y `fin` deben contener el mismo número de elementos para hacer la correspondencia.
@@ -245,7 +246,6 @@ Parametros:
       - *S*: Sabado
       - *D*: Domingo
     - *imputaciones*: cada elemento es una imputacion que realizar. `inicio` indica la hora de inicio en formato "HH24:MI" y `fin` indica la hora de fin en formato "HH24:MI"
-
 
 **Salida de ejemplo:**
 ```

@@ -150,6 +150,46 @@ class TestImputarCommand:
         assert result.exit_code == 0
         assert "fallidas: 1" in result.output
 
+    @patch("factorialhr_j.cli.time.sleep")
+    def test_imputar_humanizar_adds_delay(self, mock_sleep, runner, mock_factorial_service_class):
+        mock_service = MagicMock()
+        mock_factorial_service_class.return_value = mock_service
+
+        mock_shift1 = Shift(1, 12345, "2026-06-02", "2026-06-02T08:00:00", "2026-06-02T15:00:00", True, 420)
+        mock_shift2 = Shift(2, 12345, "2026-06-02", "2026-06-02T16:00:00", "2026-06-02T17:30:00", True, 90)
+        mock_service.create_shift.side_effect = [mock_shift1, mock_shift2]
+
+        result = runner.invoke(cli, [
+            "imputar",
+            "--fecha", "02/06/2026",
+            "--inicio", "08:00,16:00",
+            "--fin", "15:00,17:30",
+            "--humanizar"
+        ])
+
+        assert result.exit_code == 0
+        assert mock_sleep.call_count == 2
+        for call in mock_sleep.call_args_list:
+            assert 1 <= call[0][0] <= 2
+
+    @patch("factorialhr_j.cli.time.sleep")
+    def test_imputar_sin_humanizar_sin_delay(self, mock_sleep, runner, mock_factorial_service_class):
+        mock_service = MagicMock()
+        mock_factorial_service_class.return_value = mock_service
+
+        mock_shift = Shift(1, 12345, "2026-06-02", "2026-06-02T08:00:00", "2026-06-02T15:00:00", True, 420)
+        mock_service.create_shift.return_value = mock_shift
+
+        result = runner.invoke(cli, [
+            "imputar",
+            "--fecha", "02/06/2026",
+            "--inicio", "08:00",
+            "--fin", "15:00"
+        ])
+
+        assert result.exit_code == 0
+        mock_sleep.assert_not_called()
+
 
 class TestActualizarImputacionCommand:
     def test_actualizar_success(self, runner, mock_factorial_service_class):
