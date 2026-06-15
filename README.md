@@ -197,6 +197,9 @@ factorialhr-j imputar --humanizar --rango "01/06/2026-05/06/2026" --matriz-model
 
 #   3.2 Ejemplo: Imputar semana en horario reducido verano (con "descanso" intermedio)
 factorialhr-j imputar --humanizar --rango "06/07/2026-10/07/2026" --matriz-modelo '[{\"dia\": \"L\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"12:00\"},{\"inicio\": \"12:15\",\"fin\": \"15:15\"}]},{\"dia\": \"M\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"12:00\"},{\"inicio\": \"12:15\",\"fin\": \"15:15\"}]},{\"dia\": \"X\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"12:00\"},{\"inicio\": \"12:15\",\"fin\": \"15:15\"}]},{\"dia\": \"J\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"12:00\"},{\"inicio\": \"12:15\",\"fin\": \"15:15\"}]},{\"dia\": \"V\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"12:00\"},{\"inicio\": \"12:15\",\"fin\": \"15:15\"}]}]'
+
+#   3.3 Ejemplo: Imputar semana en horario reducido verano sin descanso
+factorialhr-j imputar --humanizar --rango "06/07/2026-10/07/2026" --matriz-modelo '[{\"dia\": \"L\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"15:00\"}]},{\"dia\": \"M\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"15:00\"}]},{\"dia\": \"X\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"15:00\"}]},{\"dia\": \"J\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"15:00\"}]},{\"dia\": \"V\",\"imputaciones\": [{\"inicio\": \"08:00\",\"fin\": \"15:00\"}]}]'
 ```
 Parametros:
 - **humanizar**: Establece una espera de entre 1-2 segundos entre cada registro interno realizado para grabar una imputación. "humaniza" la grabación.
